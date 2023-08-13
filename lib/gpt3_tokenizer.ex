@@ -86,6 +86,22 @@ defmodule Gpt3Tokenizer do
     |> Enum.join()
   end
 
+  @doc """
+  Decode a list of tokens into list of strings.
+
+  ## Examples
+
+      iex> Gpt3Tokenizer.decode([31373, 995])
+      ["hello", " world"]
+  """
+  def decode_with_text(tokens) do
+    tokens
+    |> Enum.map(fn token -> Map.get(@decodings, token) end)
+    |> Enum.map(fn cl ->
+      cl |> Enum.map(fn x -> @unicode_to_bytes[[x]] end) |> :erlang.list_to_binary()
+    end)
+  end
+
   defp apply_bpe(text) do
     tokens =
       Regex.scan(

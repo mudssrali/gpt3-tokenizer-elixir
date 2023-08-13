@@ -20,6 +20,7 @@ end
 ```elixir
 Gpt3Tokenizer.encode("hello 👋 world 🌍")
 Gpt3Tokenizer.decode([31373, 50169, 233, 995, 12520, 234, 235])
+Gpt3Tokenizer.decode_with_text([31373, 50169, 233, 995, 12520, 234, 235])
 Gpt3Tokenizer.token_count("This sentence is 6 tokens long")
 ```
 
